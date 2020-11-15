@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xjc.jwt.mapper.dao.AuthsMapper">
+    <resultMap id="BaseResultMap" type="com.xjc.jwt.mapper.dataobject.AuthsDO">
+        <!--@mbg.generated-->
+        <!--@Table `storage`-->
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="auths" property="auths"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_name, auths
+    </sql>
+
+    <select id="queryByUserName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from auths
+        where user_name=#{userName}
+    </select>
+
+    <insert id="insert" keyProperty="id" keyColumn="id" useGeneratedKeys="true" parameterType="com.xjc.jwt.mapper.dataobject.AuthsDO">
+        insert into auths(user_name, auths) values (#{userName}, #{auths})
+    </insert>
+
+</mapper>
